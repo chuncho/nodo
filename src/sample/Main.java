@@ -25,7 +25,7 @@ public class Main extends Application {
         System.out.println(db.getCollection("alumnos"));
 
         window = primaryStage;
-        window.setTitle("NODO - Entrenamiento Funcional");
+        window.setTitle("NODO - Entrenamiento Funcional.");
 
         acceptButton = new Button("Aceptar");
         acceptButton.setOnAction(e -> window.setScene(activeScene));
