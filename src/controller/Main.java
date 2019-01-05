@@ -1,13 +1,10 @@
-package sample;
+package controller;
 
-import com.mongodb.async.client.MongoDatabase;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import database.*;
 
 public class Main extends Application {
 
@@ -15,13 +12,20 @@ public class Main extends Application {
         launch(args);
     }
 
-    Button acceptButton, cancelButton, returnButton;
-    Scene inactiveScene, activeScene;
-    Stage window;
+    private Stage primaryStage;
+    private BorderPane rootLayout;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        MongoDatabase db = mongo.connectDB();
+
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Nodo Entrenamiento Funcional");
+
+        initRootLayout();
+
+
+
+        /*MongoDatabase db = Mongo.connectDB();
         System.out.println(db.getCollection("alumnos"));
 
         window = primaryStage;
@@ -44,7 +48,25 @@ public class Main extends Application {
         activeScene = new Scene(layout2, 300, 300);
 
         window.setScene(inactiveScene);
-        window.show();
+        window.show();*/
     }
 
+
+    /** Levanta Layout. */
+    public void initRootLayout() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/RootLayout.fxml"));
+            rootLayout = (BorderPane)loader.load();
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -5,7 +5,7 @@ import com.mongodb.async.client.MongoClient;
 import com.mongodb.async.client.MongoClients;
 import com.mongodb.async.client.MongoDatabase;
 
-public class mongo {
+public class Mongo {
 
     public static MongoDatabase connectDB() {
         MongoClient mongoClient = MongoClients.create(new ConnectionString("mongodb://127.0.0.1:27017"));
