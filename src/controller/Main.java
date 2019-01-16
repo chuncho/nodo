@@ -5,6 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Alumno;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class Main extends Application {
 
@@ -20,6 +27,23 @@ public class Main extends Application {
 
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Nodo Entrenamiento Funcional");
+
+        System.out.println("HOLA1");
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("NODO_DB");
+
+        System.out.println("HOLA2");
+
+        System.out.println(emf);
+        EntityManager em = emf.createEntityManager();
+        List<Alumno> lista=em.createQuery("select a from alumnos a",Alumno.class).getResultList();
+
+        for(Alumno a :lista) {
+
+            System.out.println(a.getNombre());
+            System.out.println(a.getApellidos());
+        }
+        em.close();
 
         initRootLayout();
 
@@ -54,6 +78,8 @@ public class Main extends Application {
 
     /** Levanta Layout. */
     public void initRootLayout() {
+
+
 
         try {
             FXMLLoader loader = new FXMLLoader();
