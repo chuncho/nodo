@@ -2,6 +2,7 @@ package com.nodo.dao;
 
 import com.mongodb.MongoClient;
 import com.nodo.models.Alumno;
+import com.nodo.models.Turno;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
@@ -19,6 +20,14 @@ public class MainDao {
 
         Query<Alumno> q = ds.createQuery(Alumno.class);
         List<Alumno> alumnos = q.asList();
+
+        return alumnos;
+    }
+
+    public List<Turno> GetListTurnos(){
+
+        Query<Turno> q = ds.createQuery(Turno.class);
+        List<Turno> alumnos = q.asList();
 
         return alumnos;
     }

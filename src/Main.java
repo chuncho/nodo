@@ -1,4 +1,5 @@
 import com.nodo.dao.MainDao;
+import com.nodo.models.Turno;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,6 +26,12 @@ public class Main extends Application {
 
         MainDao dao = new MainDao();
         List<Alumno> lista = dao.GetListAlumnos();
+
+        List<Turno> lTurno = dao.GetListTurnos();
+
+        for(Turno t :lTurno){
+            System.out.println(t.getDia());
+        }
 
         for(Alumno a :lista) {
 
