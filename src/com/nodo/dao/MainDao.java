@@ -1,29 +1,25 @@
 package com.nodo.dao;
 
+import com.mongodb.MongoClient;
 import com.nodo.models.Alumno;
-import com.nodo.models.Profesor;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
+
+
 
 public class MainDao {
 
-    public MainDao(){
-        super();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("NODO_DB");
-        em = emf.createEntityManager();
-    }
-
-    private EntityManager em;
+    final Morphia morphia = new Morphia();
+    final Datastore ds = morphia.createDatastore(new MongoClient(), "dbnodo");
 
     public List<Alumno> GetListAlumnos(){
-        return em.createQuery("select a from alumnos a", Alumno.class).getResultList();
 
-    }
+        Query<Alumno> q = ds.createQuery(Alumno.class);
+        List<Alumno> alumnos = q.asList();
 
-    public List<Profesor> GetListProfesores(){
-        return em.createQuery("select p from profesores p", Profesor.class).getResultList();
+        return alumnos;
     }
 }

@@ -1,11 +1,8 @@
 package com.nodo.models;
 
-import org.hibernate.annotations.Type;
+import org.mongodb.morphia.annotations.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity(name = "clases")
+@Entity("clases")
 public class Clase {
 
     public Clase() {
@@ -13,13 +10,18 @@ public class Clase {
     }
 
     @Id
-    @Type(type = "objectid")
     private String id;
+
     private String nombre;
+
     private Float monto;
+
     private String tipo;
+
     private Boolean enabled;
-    private String id_profesor;
+
+    @Reference("id_profesor")
+    private String idProfesor;
 
     public String getId() {
         return id;
@@ -62,10 +64,10 @@ public class Clase {
     }
 
     public String getId_profesor() {
-        return id_profesor;
+        return idProfesor;
     }
 
     public void setId_profesor(String id_profesor) {
-        this.id_profesor = id_profesor;
+        this.idProfesor = id_profesor;
     }
 }

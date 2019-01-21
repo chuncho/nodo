@@ -1,16 +1,36 @@
 package com.nodo.models;
 
-import org.hibernate.annotations.Type;
+import org.mongodb.morphia.annotations.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity(name = "profesores")
+@Entity("profesores")
 public class Profesor {
 
+    public Profesor() { super(); }
+
     @Id
-    @Type(type = "objectid")
     private String id;
+
+    private int dni;
+
+    private String nombre;
+
+    private Long telefono;
+
+    private String user;
+
+    private String pass;
+
+    @Reference("fecha_creacion")
+    private String fechaCreacion;
+
+    @Reference("ultima_modificacion")
+    private String ultimaModificacion;
+
+    private String ingreso;
+
+    private String egreso;
+
+    private boolean enabled;
 
     public String getId() {
         return id;
@@ -19,21 +39,6 @@ public class Profesor {
     public void setId(String id) {
         this.id = id;
     }
-
-    public Profesor() {
-        super();
-    }
-
-    private int dni;
-    private String nombre;
-    private Long telefono;
-    private String user;
-    private String pass;
-    private String fecha_creacion;
-    private String ultima_modificacion;
-    private String ingreso;
-    private String egreso;
-    private boolean enabled;
 
     public int getDni() {
         return dni;
@@ -76,19 +81,19 @@ public class Profesor {
     }
 
     public String getFechaCreacion() {
-        return fecha_creacion;
+        return fechaCreacion;
     }
 
     public void setFechaCreacion(String fechaCreacion) {
-        this.fecha_creacion = fechaCreacion;
+        this.fechaCreacion = fechaCreacion;
     }
 
     public String getUltimaModificacion() {
-        return ultima_modificacion;
+        return ultimaModificacion;
     }
 
     public void setUltimaModificacion(String ultimaModificacion) {
-        this.ultima_modificacion = ultimaModificacion;
+        this.ultimaModificacion = ultimaModificacion;
     }
 
     public String getIngreso() {

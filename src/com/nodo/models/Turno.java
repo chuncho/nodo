@@ -1,12 +1,10 @@
 package com.nodo.models;
 
+import org.mongodb.morphia.annotations.*;
 
-import org.hibernate.annotations.Type;
+import java.util.ArrayList;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity(name = "turnos")
+@Entity("turnos")
 public class Turno {
 
     public Turno() {
@@ -14,10 +12,11 @@ public class Turno {
     }
 
     @Id
-    @Type(type = "objectid")
     private String id;
-    private Object hora;
-    private Object dia;
+
+    private ArrayList<String> hora;
+
+    private ArrayList<String> dia;
 
     public String getId() {
         return id;
@@ -27,22 +26,19 @@ public class Turno {
         this.id = id;
     }
 
-    public Object getHora() {
+    public ArrayList<String> getHora() {
         return hora;
     }
 
-    public void setHora(Object hora) {
+    public void setHora(ArrayList<String> hora) {
         this.hora = hora;
     }
 
-    public Object getDia() {
+    public ArrayList<String> getDia() {
         return dia;
     }
 
-    public void setDia(Object dia) {
+    public void setDia(ArrayList<String> dia) {
         this.dia = dia;
     }
-
-
-
 }

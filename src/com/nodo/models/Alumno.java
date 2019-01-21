@@ -1,17 +1,47 @@
 package com.nodo.models;
 
-import javax.persistence.*;
+import org.mongodb.morphia.annotations.*;
 
-import org.hibernate.annotations.Type;
+import java.util.Map;
 
-import java.util.List;
-
-@Entity(name = "alumnos")
+@Entity("alumnos")
 public class Alumno {
 
+    public Alumno() {
+        super();
+    }
+
     @Id
-    @Type(type = "objectid")
     private String id;
+
+    private int dni;
+
+    private String nombre;
+
+    private Long telefono;
+
+    @Reference("telefono_contacto")
+    private Long telefonoContacto;
+
+    @Reference("id_clase")
+    private String idClase;
+
+    @Reference("id_turno")
+    private String idTurno;
+
+    @Reference("fecha_creacion")
+    private String fechaCreacion;
+
+    @Reference("ultima_modificacion")
+    private String ultimaModificacion;
+
+    private String estado;
+
+    private Boolean enabled;
+
+    private Map<String,String> datos_adicionales;
+
+    // getters and setters
 
     public String getId() {
         return id;
@@ -20,23 +50,6 @@ public class Alumno {
     public void setId(String id) {
         this.id = id;
     }
-
-    public Alumno() {
-        super();
-    }
-
-    private int dni;
-    private String nombre;
-    private Long telefono;
-    private Long telefono_contacto;
-    private String id_clase;
-    private String id_turno;
-    private String fecha_creacion;
-    private String ultima_modificacion;
-    private String estado;
-    private Boolean enabled;
-    //private Object datosAdicionales;
-
 
     public int getDni() {
         return dni;
@@ -51,23 +64,23 @@ public class Alumno {
     }
 
     public Long getTelefonoContacto() {
-        return telefono_contacto;
+        return telefonoContacto;
     }
 
     public String getIdClase() {
-        return id_clase;
+        return idClase;
     }
 
     public String getIdTurno() {
-        return id_turno;
+        return idTurno;
     }
 
     public String getFechaCreacion() {
-        return fecha_creacion;
+        return fechaCreacion;
     }
 
     public String getUltimaModificacion() {
-        return ultima_modificacion;
+        return ultimaModificacion;
     }
 
     public String getEstado() {
@@ -91,23 +104,23 @@ public class Alumno {
     }
 
     public void setTelefonoContacto(Long telefonoContacto) {
-        this.telefono_contacto = telefonoContacto;
+        this.telefonoContacto = telefonoContacto;
     }
 
     public void setIdClase(String idClase) {
-        this.id_clase = idClase;
+        this.idClase = idClase;
     }
 
     public void setIdTurno(String idTurno) {
-        this.id_turno = idTurno;
+        this.idTurno = idTurno;
     }
 
     public void setFechaCreacion(String fechaCreacion) {
-        this.fecha_creacion = fechaCreacion;
+        this.fechaCreacion = fechaCreacion;
     }
 
     public void setUltimaModificacion(String ultimaModificacion) {
-        this.ultima_modificacion = ultimaModificacion;
+        this.ultimaModificacion = ultimaModificacion;
     }
 
     public void setEstado(String estado) {
@@ -118,13 +131,11 @@ public class Alumno {
         this.enabled = enabled;
     }
 
-    /*public Object getDatosAdicionales() {
-
-        return datosAdicionales;
+    public Map<String, String> getDatosAdicionales() {
+        return datos_adicionales;
     }
 
-    public void setDatosAdicionales(Object datosAdicionales) {
-        this.datosAdicionales = datosAdicionales;
-    }*/
-
+    public void setDatosAdicionales(Map<String, String> datos_adicionales) {
+        this.datos_adicionales = datos_adicionales;
+    }
 }
