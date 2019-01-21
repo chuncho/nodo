@@ -1,10 +1,10 @@
-package model;
+package com.nodo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
+
+import java.util.List;
 
 @Entity(name = "alumnos")
 public class Alumno {
@@ -21,34 +21,22 @@ public class Alumno {
         this.id = id;
     }
 
-    private int dni;
-    private String nombre;
-    private String apellidos;
-    private Long telefono;
-    private Long telefonoContacto;
-    private String idClase;
-    private String idTurno;
-    private String fechaCreacion;
-    private String ultimaModificacion;
-    private String estado;
-    private Boolean enabled;
-
     public Alumno() {
         super();
     }
 
-    public Alumno(String id, int dni, String nombre, String apellidos, Long telefono, Long telefonoContacto, String fechaCreacion, String ultimaModificacion, String estado, Boolean enabled) {
-        this.id = id;
-        this.dni = dni;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.telefono = telefono;
-        this.telefonoContacto = telefonoContacto;
-        this.fechaCreacion = fechaCreacion;
-        this.ultimaModificacion = ultimaModificacion;
-        this.estado = estado;
-        this.enabled = enabled;
-    }
+    private int dni;
+    private String nombre;
+    private Long telefono;
+    private Long telefono_contacto;
+    private String id_clase;
+    private String id_turno;
+    private String fecha_creacion;
+    private String ultima_modificacion;
+    private String estado;
+    private Boolean enabled;
+    //private Object datosAdicionales;
+
 
     public int getDni() {
         return dni;
@@ -58,32 +46,28 @@ public class Alumno {
         return nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
-    }
-
     public Long getTelefono() {
         return telefono;
     }
 
     public Long getTelefonoContacto() {
-        return telefonoContacto;
+        return telefono_contacto;
     }
 
     public String getIdClase() {
-        return idClase;
+        return id_clase;
     }
 
     public String getIdTurno() {
-        return idTurno;
+        return id_turno;
     }
 
     public String getFechaCreacion() {
-        return fechaCreacion;
+        return fecha_creacion;
     }
 
     public String getUltimaModificacion() {
-        return ultimaModificacion;
+        return ultima_modificacion;
     }
 
     public String getEstado() {
@@ -102,32 +86,28 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
     public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
     public void setTelefonoContacto(Long telefonoContacto) {
-        this.telefonoContacto = telefonoContacto;
+        this.telefono_contacto = telefonoContacto;
     }
 
     public void setIdClase(String idClase) {
-        this.idClase = idClase;
+        this.id_clase = idClase;
     }
 
     public void setIdTurno(String idTurno) {
-        this.idTurno = idTurno;
+        this.id_turno = idTurno;
     }
 
     public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+        this.fecha_creacion = fechaCreacion;
     }
 
     public void setUltimaModificacion(String ultimaModificacion) {
-        this.ultimaModificacion = ultimaModificacion;
+        this.ultima_modificacion = ultimaModificacion;
     }
 
     public void setEstado(String estado) {
@@ -137,4 +117,14 @@ public class Alumno {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    /*public Object getDatosAdicionales() {
+
+        return datosAdicionales;
+    }
+
+    public void setDatosAdicionales(Object datosAdicionales) {
+        this.datosAdicionales = datosAdicionales;
+    }*/
+
 }

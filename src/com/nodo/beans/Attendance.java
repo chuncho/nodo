@@ -1,4 +1,4 @@
-package controller;
+package com.nodo.beans;
 
 public class Attendance {
 }
