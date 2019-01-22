@@ -1,6 +1,7 @@
 package com.nodo.models;
 
 import org.mongodb.morphia.annotations.*;
+import org.bson.types.ObjectId;
 
 import java.util.Map;
 
@@ -12,7 +13,7 @@ public class Alumno {
     }
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private int dni;
 
@@ -20,34 +21,35 @@ public class Alumno {
 
     private Long telefono;
 
-    @Reference("telefono_contacto")
+    @Property("telefono_contacto")
     private Long telefonoContacto;
 
-    @Reference("id_clase")
-    private String idClase;
+    @Reference(idOnly = true)
+    private Clase clase;
 
-    @Reference("id_turno")
-    private String idTurno;
+    @Reference(idOnly = true)
+    private Turno turno;
 
-    @Reference("fecha_creacion")
+    @Property("fecha_creacion")
     private String fechaCreacion;
 
-    @Reference("ultima_modificacion")
+    @Property("ultima_modificacion")
     private String ultimaModificacion;
 
     private String estado;
 
     private Boolean enabled;
 
-    private Map<String,String> datos_adicionales;
+    @Property("datos_adicionales")
+    private Map<String,String> datosAdicionales;
 
     // getters and setters
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -67,12 +69,12 @@ public class Alumno {
         return telefonoContacto;
     }
 
-    public String getIdClase() {
-        return idClase;
+    public Clase getClase() {
+        return clase;
     }
 
-    public String getIdTurno() {
-        return idTurno;
+    public Turno getTurno() {
+        return turno;
     }
 
     public String getFechaCreacion() {
@@ -107,12 +109,12 @@ public class Alumno {
         this.telefonoContacto = telefonoContacto;
     }
 
-    public void setIdClase(String idClase) {
-        this.idClase = idClase;
+    public void setClase(Clase clase) {
+        this.clase = clase;
     }
 
-    public void setIdTurno(String idTurno) {
-        this.idTurno = idTurno;
+    public void setTurno(Turno turno) {
+        this.turno = turno;
     }
 
     public void setFechaCreacion(String fechaCreacion) {
@@ -132,10 +134,11 @@ public class Alumno {
     }
 
     public Map<String, String> getDatosAdicionales() {
-        return datos_adicionales;
+        return datosAdicionales;
     }
 
-    public void setDatosAdicionales(Map<String, String> datos_adicionales) {
-        this.datos_adicionales = datos_adicionales;
+    public void setDatosAdicionales(Map<String, String> datosAdicionales) {
+        this.datosAdicionales = datosAdicionales;
     }
+
 }

@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import com.nodo.models.Alumno;
 import java.util.List;
 
+import static javax.swing.text.StyleConstants.Size;
+
 public class Main extends Application {
 
     public static void main(String[] args) {
@@ -26,16 +28,11 @@ public class Main extends Application {
 
         MainDao dao = new MainDao();
         List<Alumno> lista = dao.GetListAlumnos();
-
-        List<Turno> lTurno = dao.GetListTurnos();
-
-        for(Turno t :lTurno){
-            System.out.println(t.getDia());
-        }
+        System.out.println(lista.size());
 
         for(Alumno a :lista) {
 
-            System.out.println(a.getTelefonoContacto());
+            System.out.println(a.getClase().getNombre());
 
         }
 

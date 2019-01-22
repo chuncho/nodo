@@ -1,5 +1,6 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
 @Entity("profesores")
@@ -8,7 +9,7 @@ public class Profesor {
     public Profesor() { super(); }
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private int dni;
 
@@ -20,10 +21,10 @@ public class Profesor {
 
     private String pass;
 
-    @Reference("fecha_creacion")
+    @Property("fecha_creacion")
     private String fechaCreacion;
 
-    @Reference("ultima_modificacion")
+    @Property("ultima_modificacion")
     private String ultimaModificacion;
 
     private String ingreso;
@@ -32,11 +33,11 @@ public class Profesor {
 
     private boolean enabled;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

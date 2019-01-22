@@ -1,5 +1,6 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
@@ -12,13 +13,13 @@ public class Rutina {
     public Rutina(){ super(); }
 
     @Id
-    private String id;
+    private ObjectId id;
 
-    @Reference("id_alumno")
-    private String idAlumno;
+    @Reference(idOnly = true)
+    private Alumno alumno;
 
-    @Reference("id_profesor")
-    private String idProfesor;
+    @Reference(idOnly = true)
+    private Profesor profesor;
 
     private String vencimiento;
 
@@ -26,28 +27,28 @@ public class Rutina {
 
     private Boolean enabled;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getIdAlumno() {
-        return idAlumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public void setIdAlumno(String idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
-    public String getIdProfesor() {
-        return idProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setIdProfesor(String idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public String getVencimiento() {

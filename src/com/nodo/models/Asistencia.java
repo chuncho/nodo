@@ -1,5 +1,6 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
@@ -10,27 +11,27 @@ public class Asistencia {
     public Asistencia(){super();}
 
     @Id
-    private String id;
+    private ObjectId id;
 
-    @Reference("id_alumno")
-    private String idAlumno;
+    @Reference(idOnly = true)
+    private Alumno alumno;
 
     private String fecha;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getIdAlumno() {
-        return idAlumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public void setIdAlumno(String idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
     public String getFecha() {
