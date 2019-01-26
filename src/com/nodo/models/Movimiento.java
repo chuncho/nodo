@@ -6,6 +6,8 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
+
 @Entity("movimientos")
 public class Movimiento {
 
@@ -14,7 +16,7 @@ public class Movimiento {
     @Id
     private ObjectId id;
 
-    private String horario;
+    private Date fecha;
 
     private Float monto;
 
@@ -34,12 +36,12 @@ public class Movimiento {
         this.id = id;
     }
 
-    public String getHorario() {
-        return horario;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public Float getMonto() {

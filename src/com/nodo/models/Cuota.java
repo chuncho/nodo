@@ -6,6 +6,8 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
+
 @Entity("cuotas")
 public class Cuota {
 
@@ -22,10 +24,10 @@ public class Cuota {
     @Property("monto_pago")
     private Float montoPago;
 
-    private String vencimiento;
+    private Date vencimiento;
 
     @Property("fecha_pago")
-    private String fechaPago;
+    private Date fechaPago;
 
     private Boolean enabled;
 
@@ -61,19 +63,19 @@ public class Cuota {
         this.montoPago = montoPago;
     }
 
-    public String getVencimiento() {
+    public Date getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(String vencimiento) {
+    public void setVencimiento(Date vencimiento) {
         this.vencimiento = vencimiento;
     }
 
-    public String getFechaPago() {
+    public Date getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(String fechaPago) {
+    public void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 

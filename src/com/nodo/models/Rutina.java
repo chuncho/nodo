@@ -5,6 +5,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
 import java.util.Map;
 
 @Entity("rutinas")
@@ -21,7 +22,7 @@ public class Rutina {
     @Reference(idOnly = true)
     private Profesor profesor;
 
-    private String vencimiento;
+    private Date vencimiento;
 
     private Map<String,Object> ejercicios;
 
@@ -51,11 +52,11 @@ public class Rutina {
         this.profesor = profesor;
     }
 
-    public String getVencimiento() {
+    public Date getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(String vencimiento) {
+    public void setVencimiento(Date vencimiento) {
         this.vencimiento = vencimiento;
     }
 

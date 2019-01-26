@@ -1,13 +1,12 @@
-import com.nodo.dao.MainDao;
-import com.nodo.models.Turno;
+import com.nodo.dao.AlumnoDao;
+import com.nodo.dao.ProfesorDao;
+import com.nodo.models.Alumno;
+import com.nodo.models.Profesor;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import com.nodo.models.Alumno;
-import java.util.List;
-
 import static javax.swing.text.StyleConstants.Size;
 
 public class Main extends Application {
@@ -25,16 +24,18 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Nodo Entrenamiento Funcional");
 
+        ProfesorDao dao = new ProfesorDao();
+        Profesor profe = dao.GetByUser("martin");
 
-        MainDao dao = new MainDao();
-        List<Alumno> lista = dao.GetListAlumnos();
-        System.out.println(lista.size());
+        System.out.println(profe.getUltimaModificacion());
 
-        for(Alumno a :lista) {
+        profe.setNombre("Martin");
 
-            System.out.println(a.getClase().getNombre());
+        dao.Update(profe);
 
-        }
+        profe = dao.GetByUser("martin");
+
+        System.out.println(profe.getUltimaModificacion());
 
         initRootLayout();
 

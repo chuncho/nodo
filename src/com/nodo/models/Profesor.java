@@ -3,6 +3,8 @@ package com.nodo.models;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
+import java.util.Date;
+
 @Entity("profesores")
 public class Profesor {
 
@@ -22,16 +24,24 @@ public class Profesor {
     private String pass;
 
     @Property("fecha_creacion")
-    private String fechaCreacion;
+    private Date fechaCreacion;
 
     @Property("ultima_modificacion")
-    private String ultimaModificacion;
+    private Date ultimaModificacion;
 
     private String ingreso;
 
     private String egreso;
 
     private boolean enabled;
+
+    // metodos generales
+
+    public void prePersist() {
+        Date date = new Date();
+        this.ultimaModificacion = date;
+        this.fechaCreacion = date;
+    }
 
     public ObjectId getId() {
         return id;
@@ -81,19 +91,19 @@ public class Profesor {
         this.pass = pass;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getUltimaModificacion() {
+    public Date getUltimaModificacion() {
         return ultimaModificacion;
     }
 
-    public void setUltimaModificacion(String ultimaModificacion) {
+    public void setUltimaModificacion(Date ultimaModificacion) {
         this.ultimaModificacion = ultimaModificacion;
     }
 

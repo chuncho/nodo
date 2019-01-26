@@ -3,6 +3,8 @@ package com.nodo.models;
 import org.mongodb.morphia.annotations.*;
 import org.bson.types.ObjectId;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 @Entity("alumnos")
@@ -31,10 +33,10 @@ public class Alumno {
     private Turno turno;
 
     @Property("fecha_creacion")
-    private String fechaCreacion;
+    private Date fechaCreacion;
 
     @Property("ultima_modificacion")
-    private String ultimaModificacion;
+    private Date ultimaModificacion;
 
     private String estado;
 
@@ -42,6 +44,14 @@ public class Alumno {
 
     @Property("datos_adicionales")
     private Map<String,String> datosAdicionales;
+
+    // metodos generales
+
+    public void prePersist() {
+        Date date = new Date();
+        this.ultimaModificacion = date;
+        this.fechaCreacion = date;
+    }
 
     // getters and setters
 
@@ -77,11 +87,11 @@ public class Alumno {
         return turno;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public String getUltimaModificacion() {
+    public Date getUltimaModificacion() {
         return ultimaModificacion;
     }
 
@@ -89,7 +99,7 @@ public class Alumno {
         return estado;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -117,11 +127,11 @@ public class Alumno {
         this.turno = turno;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public void setUltimaModificacion(String ultimaModificacion) {
+    public void setUltimaModificacion(Date ultimaModificacion) {
         this.ultimaModificacion = ultimaModificacion;
     }
 
