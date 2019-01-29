@@ -42,7 +42,7 @@ public class Configuracion {
         this.data = data;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

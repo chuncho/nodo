@@ -79,7 +79,7 @@ public class Cuota {
         this.fechaPago = fechaPago;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

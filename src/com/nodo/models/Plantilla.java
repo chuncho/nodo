@@ -45,7 +45,7 @@ public class Plantilla {
         this.ejercicios = ejercicios;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

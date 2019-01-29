@@ -56,7 +56,7 @@ public class Clase {
         this.tipo = tipo;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

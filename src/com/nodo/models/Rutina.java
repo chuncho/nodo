@@ -28,6 +28,10 @@ public class Rutina {
 
     private Boolean enabled;
 
+    public void prePersist() {
+        this.enabled = true;
+    }
+
     public ObjectId getId() {
         return id;
     }
@@ -68,7 +72,7 @@ public class Rutina {
         this.ejercicios = ejercicios;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

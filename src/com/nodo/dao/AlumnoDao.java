@@ -14,7 +14,8 @@ public class AlumnoDao extends DataBase{
 
     public List<Alumno> GetList(){
 
-        Query<Alumno> q = ds.createQuery(Alumno.class);
+        Query<Alumno> q = ds.createQuery(Alumno.class).
+                field("enabled").equal(true);
         List<Alumno> alumnos = q.asList();
 
         return alumnos;
@@ -29,6 +30,7 @@ public class AlumnoDao extends DataBase{
 
     public String Insert(Alumno alumno){
         alumno.prePersist();
+        alumno.setEnabled(true);
         Key<Alumno> id = ds.save(alumno);
         return id.getId().toString();
     }

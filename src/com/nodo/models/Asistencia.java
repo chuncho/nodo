@@ -20,6 +20,13 @@ public class Asistencia {
 
     private Date fecha;
 
+    // metodos generales
+
+    public void prePersist() {
+        Date date = new Date();
+        this.fecha = date;
+    }
+
     public ObjectId getId() {
         return id;
     }

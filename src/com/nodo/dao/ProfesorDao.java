@@ -12,21 +12,24 @@ public class ProfesorDao extends DataBase {
 
     public List<Profesor> GetList(){
 
-        Query<Profesor> q = ds.createQuery(Profesor.class);
+        Query<Profesor> q = ds.createQuery(Profesor.class).
+                field("enabled").equal(true);
         List<Profesor> profesores = q.asList();
 
         return profesores;
     }
 
     public Profesor GetByDni(int dni){
-        Query<Profesor> q = ds.createQuery(Profesor.class).filter("dni =", dni);
+        Query<Profesor> q = ds.createQuery(Profesor.class).
+                filter("dni =", dni);
 
         Profesor p = q.get();
         return p;
     }
 
     public Profesor GetByUser(String user){
-        Query<Profesor> q = ds.createQuery(Profesor.class).filter("user =", user);
+        Query<Profesor> q = ds.createQuery(Profesor.class).
+                filter("user =", user);
 
         Profesor p = q.get();
         return p;
@@ -34,6 +37,7 @@ public class ProfesorDao extends DataBase {
 
     public String Insert(Profesor p){
         p.prePersist();
+        p.setEnabled(true);
         Key<Profesor> id = ds.save(p);
         return id.getId().toString();
     }

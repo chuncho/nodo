@@ -42,7 +42,7 @@ public class Concepto {
         this.tipo = tipo;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

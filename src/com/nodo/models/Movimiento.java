@@ -28,6 +28,15 @@ public class Movimiento {
 
     private Boolean enabled;
 
+    // metodos generales
+
+    public void prePersist() {
+        if (this.fecha == null){
+            Date date = new Date();
+            this.fecha = date;
+        }
+    }
+
     public ObjectId getId() {
         return id;
     }
@@ -68,7 +77,7 @@ public class Movimiento {
         this.tipoCaja = tipoCaja;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
