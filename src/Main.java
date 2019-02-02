@@ -5,10 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 
 public class Main extends Application {
@@ -70,7 +74,19 @@ public class Main extends Application {
             System.out.println(r.getVencimiento());
         }*/
 
-        initRootLayout();
+        ProfesorDao dao = new ProfesorDao();
+
+        Profesor p = dao.GetByDni(38572333);
+
+        p.setPass("123456");
+
+        System.out.println(dao.Update(p));
+
+
+        p = dao.GetByDni(38572333);
+
+        System.out.println(p.getPass());
+
 
     }
 

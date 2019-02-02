@@ -1,5 +1,6 @@
 package com.nodo.models;
 
+import com.nodo.utils.Encrypter;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
@@ -8,7 +9,11 @@ import java.util.Date;
 @Entity("profesores")
 public class Profesor {
 
-    public Profesor() { super(); }
+    private Encrypter enc = new Encrypter();
+
+    public Profesor() {
+        super();
+    }
 
     @Id
     private ObjectId id;
@@ -34,6 +39,8 @@ public class Profesor {
     private String egreso;
 
     private boolean enabled;
+
+    private static String secretKey = "mkkfkw";
 
     // metodos generales
 
@@ -84,11 +91,16 @@ public class Profesor {
     }
 
     public String getPass() {
-        return pass;
+        return enc.decrypt(this.pass);
+    }
+
+    public String getUncryptedPass() {
+        return this.pass;
     }
 
     public void setPass(String pass) {
-        this.pass = pass;
+        this.pass = enc.encrypt(pass);
+        System.out.println(this.pass);
     }
 
     public Date getFechaCreacion() {

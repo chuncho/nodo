@@ -51,7 +51,7 @@ public class ProfesorDao extends DataBase {
                 set("nombre", p.getNombre()).
                 set("telefono", p.getTelefono()).
                 set("user", p.getUser()).
-                set("pass", p.getPass()).
+                set("pass", p.getUncryptedPass()).
                 set("ultima_modificacion", p.getUltimaModificacion()).
                 set("ingreso", p.getIngreso()).
                 set("egreso", p.getEgreso()).
