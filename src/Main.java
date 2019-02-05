@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -30,10 +31,15 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Nodo Entrenamiento Funcional");
 
-        /*AlumnoDao dao = new AlumnoDao();
+        AlumnoDao dao = new AlumnoDao();
         Alumno alumno = dao.GetByDni(33313023);
 
-        System.out.println(alumno.getNombre());
+        CuotaDao cdao = new CuotaDao();
+        Map<String,Object> deuda = cdao.AlertaCuotas(alumno);
+
+        System.out.println(deuda.get("mensaje"));
+
+        /*System.out.println(alumno.getNombre());
 
         AsistenciaDao asisDao = new AsistenciaDao();
         List<Asistencia> listA = asisDao.GetByAlumnos(alumno);
@@ -74,7 +80,7 @@ public class Main extends Application {
             System.out.println(r.getVencimiento());
         }*/
 
-        ProfesorDao dao = new ProfesorDao();
+       /* ProfesorDao dao = new ProfesorDao();
 
         Profesor p = dao.GetByDni(38572333);
 
@@ -85,7 +91,7 @@ public class Main extends Application {
 
         p = dao.GetByDni(38572333);
 
-        System.out.println(p.getPass());
+        System.out.println(p.getPass());*/
 
 
     }
