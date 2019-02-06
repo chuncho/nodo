@@ -39,6 +39,15 @@ public class AsistenciaDao extends DataBase {
 
     }
 
+    public List<Asistencia> GetByFechaDesde(Date desde) {
+
+        Query<Asistencia> q = ds.createQuery(Asistencia.class).
+                field("fecha").greaterThanOrEq(desde);
+        List<Asistencia> a = q.asList();
+
+        return a;
+    }
+
     public String Insert(Asistencia a){
         a.prePersist();
         Key<Asistencia> id = ds.save(a);

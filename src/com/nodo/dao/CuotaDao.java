@@ -1,6 +1,7 @@
 package com.nodo.dao;
 
 import com.nodo.models.Alumno;
+import com.nodo.models.Asistencia;
 import com.nodo.models.Cuota;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
@@ -60,6 +61,9 @@ public class CuotaDao extends DataBase {
 
     public String Insert(Cuota a) {
         a.setEnabled(true);
+        float m = 0;
+        a.setMontoPago(m);
+        a.setFechaPago(null);
         Key<Cuota> id = ds.save(a);
         return id.getId().toString();
     }
@@ -119,6 +123,36 @@ public class CuotaDao extends DataBase {
         resp.put("mensaje", mensaje);
 
         return resp;
+    }
+
+    public String GenerarCuotas(Alumno alumno) {
+
+        String idCuota = "";
+
+        AsistenciaDao asistenciaDao = new AsistenciaDao();
+
+        Date hoy = new Date();
+        hoy.setDate(1);
+        hoy.setHours(0);
+        hoy.setMinutes(0);
+        hoy.setSeconds(0);
+
+        List<Asistencia> listAsistencia = asistenciaDao.GetByFechaDesde(hoy);
+
+        if (listAsistencia.size() == 0) {
+
+            hoy.setDate(10);
+
+            Cuota cuota = new Cuota();
+            cuota.setAlumno(alumno);
+            cuota.setMonto(alumno.getClase().getMonto());
+            cuota.setVencimiento(hoy);
+
+            idCuota = Insert(cuota);
+
+        }
+
+        return idCuota;
     }
 
 }

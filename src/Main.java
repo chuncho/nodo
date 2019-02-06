@@ -35,9 +35,7 @@ public class Main extends Application {
         Alumno alumno = dao.GetByDni(33313023);
 
         CuotaDao cdao = new CuotaDao();
-        Map<String,Object> deuda = cdao.AlertaCuotas(alumno);
-
-        System.out.println(deuda.get("mensaje"));
+        cdao.GenerarCuotas(alumno);
 
         /*System.out.println(alumno.getNombre());
 
