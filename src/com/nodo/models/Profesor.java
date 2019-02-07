@@ -95,7 +95,7 @@ public class Profesor {
     }
 
     public String getUncryptedPass() {
-        return this.pass;
+        return pass;
     }
 
     public void setPass(String pass) {
