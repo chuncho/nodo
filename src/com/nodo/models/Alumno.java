@@ -1,7 +1,9 @@
 package com.nodo.models;
 
 import org.mongodb.morphia.annotations.*;
+import org.bson.types.ObjectId;
 
+import java.util.Date;
 import java.util.Map;
 
 @Entity("alumnos")
@@ -12,7 +14,7 @@ public class Alumno {
     }
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private int dni;
 
@@ -20,34 +22,43 @@ public class Alumno {
 
     private Long telefono;
 
-    @Reference("telefono_contacto")
+    @Property("telefono_contacto")
     private Long telefonoContacto;
 
-    @Reference("id_clase")
-    private String idClase;
+    @Reference(idOnly = true)
+    private Clase clase;
 
-    @Reference("id_turno")
-    private String idTurno;
+    @Reference(idOnly = true)
+    private Turno turno;
 
-    @Reference("fecha_creacion")
-    private String fechaCreacion;
+    @Property("fecha_creacion")
+    private Date fechaCreacion;
 
-    @Reference("ultima_modificacion")
-    private String ultimaModificacion;
+    @Property("ultima_modificacion")
+    private Date ultimaModificacion;
 
     private String estado;
 
     private Boolean enabled;
 
-    private Map<String,String> datos_adicionales;
+    @Property("datos_adicionales")
+    private Map<String, String> datosAdicionales;
+
+    // metodos generales
+
+    public void prePersist() {
+        Date date = new Date();
+        this.ultimaModificacion = date;
+        this.fechaCreacion = date;
+    }
 
     // getters and setters
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -67,19 +78,19 @@ public class Alumno {
         return telefonoContacto;
     }
 
-    public String getIdClase() {
-        return idClase;
+    public Clase getClase() {
+        return clase;
     }
 
-    public String getIdTurno() {
-        return idTurno;
+    public Turno getTurno() {
+        return turno;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public String getUltimaModificacion() {
+    public Date getUltimaModificacion() {
         return ultimaModificacion;
     }
 
@@ -87,7 +98,7 @@ public class Alumno {
         return estado;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -107,19 +118,19 @@ public class Alumno {
         this.telefonoContacto = telefonoContacto;
     }
 
-    public void setIdClase(String idClase) {
-        this.idClase = idClase;
+    public void setClase(Clase clase) {
+        this.clase = clase;
     }
 
-    public void setIdTurno(String idTurno) {
-        this.idTurno = idTurno;
+    public void setTurno(Turno turno) {
+        this.turno = turno;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public void setUltimaModificacion(String ultimaModificacion) {
+    public void setUltimaModificacion(Date ultimaModificacion) {
         this.ultimaModificacion = ultimaModificacion;
     }
 
@@ -132,10 +143,11 @@ public class Alumno {
     }
 
     public Map<String, String> getDatosAdicionales() {
-        return datos_adicionales;
+        return datosAdicionales;
     }
 
-    public void setDatosAdicionales(Map<String, String> datos_adicionales) {
-        this.datos_adicionales = datos_adicionales;
+    public void setDatosAdicionales(Map<String, String> datosAdicionales) {
+        this.datosAdicionales = datosAdicionales;
     }
+
 }

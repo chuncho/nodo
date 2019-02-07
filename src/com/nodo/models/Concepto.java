@@ -1,15 +1,18 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 @Entity("conceptos")
 public class Concepto {
 
-    public Concepto(){ super(); }
+    public Concepto() {
+        super();
+    }
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private String nombre;
 
@@ -17,11 +20,11 @@ public class Concepto {
 
     private Boolean enabled;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -41,7 +44,7 @@ public class Concepto {
         this.tipo = tipo;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

@@ -1,42 +1,53 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
 import java.util.Map;
 
 @Entity("auditorias")
 public class Auditoria {
 
-    public Auditoria() { super();}
+    public Auditoria() {
+        super();
+    }
 
     @Id
-    private String id;
+    private ObjectId id;
 
-    @Reference("id_profesor")
-    private String idProfesor;
+    @Reference(idOnly = true)
+    private Profesor profesor;
 
     private String tipo;
 
-    private String fecha;
+    private Date fecha;
 
-    private Map<String,String> data;
+    private Map<String, String> data;
 
-    public String getId() {
+    // metodos generales
+
+    public void prePersist() {
+        Date date = new Date();
+        this.fecha = date;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getIdProfesor() {
-        return idProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setIdProfesor(String idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public String getTipo() {
@@ -47,11 +58,11 @@ public class Auditoria {
         this.tipo = tipo;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

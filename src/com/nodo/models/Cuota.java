@@ -1,46 +1,52 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
+
+import java.util.Date;
 
 @Entity("cuotas")
 public class Cuota {
 
-    public Cuota(){super();}
+    public Cuota() {
+        super();
+    }
 
     @Id
-    private String id;
+    private ObjectId id;
 
-    @Reference("id_alumno")
-    private String idAlumno;
+    @Reference(idOnly = true)
+    private Alumno alumno;
 
     private Float monto;
 
-    @Reference("monto_pago")
+    @Property("monto_pago")
     private Float montoPago;
 
-    private String vencimiento;
+    private Date vencimiento;
 
-    @Reference("fecha_pago")
-    private String fechaPago;
+    @Property("fecha_pago")
+    private Date fechaPago;
 
     private Boolean enabled;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getIdAlumno() {
-        return idAlumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public void setIdAlumno(String idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
     public Float getMonto() {
@@ -59,23 +65,23 @@ public class Cuota {
         this.montoPago = montoPago;
     }
 
-    public String getVencimiento() {
+    public Date getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(String vencimiento) {
+    public void setVencimiento(Date vencimiento) {
         this.vencimiento = vencimiento;
     }
 
-    public String getFechaPago() {
+    public Date getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(String fechaPago) {
+    public void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

@@ -1,43 +1,55 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
+
 @Entity("asistencias")
 public class Asistencia {
 
-    public Asistencia(){super();}
+    public Asistencia() {
+        super();
+    }
 
     @Id
-    private String id;
+    private ObjectId id;
 
-    @Reference("id_alumno")
-    private String idAlumno;
+    @Reference(idOnly = true)
+    private Alumno alumno;
 
-    private String fecha;
+    private Date fecha;
 
-    public String getId() {
+    // metodos generales
+
+    public void prePersist() {
+        Date date = new Date();
+        this.fecha = date;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getIdAlumno() {
-        return idAlumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public void setIdAlumno(String idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 }

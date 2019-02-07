@@ -1,60 +1,68 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
 import java.util.Map;
 
 @Entity("rutinas")
 public class Rutina {
 
-    public Rutina(){ super(); }
+    public Rutina() {
+        super();
+    }
 
     @Id
-    private String id;
+    private ObjectId id;
 
-    @Reference("id_alumno")
-    private String idAlumno;
+    @Reference(idOnly = true)
+    private Alumno alumno;
 
-    @Reference("id_profesor")
-    private String idProfesor;
+    @Reference(idOnly = true)
+    private Profesor profesor;
 
-    private String vencimiento;
+    private Date vencimiento;
 
-    private Map<String,Object> ejercicios;
+    private Map<String, Object> ejercicios;
 
     private Boolean enabled;
 
-    public String getId() {
+    public void prePersist() {
+        this.enabled = true;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getIdAlumno() {
-        return idAlumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public void setIdAlumno(String idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
-    public String getIdProfesor() {
-        return idProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setIdProfesor(String idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
-    public String getVencimiento() {
+    public Date getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(String vencimiento) {
+    public void setVencimiento(Date vencimiento) {
         this.vencimiento = vencimiento;
     }
 
@@ -66,7 +74,7 @@ public class Rutina {
         this.ejercicios = ejercicios;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

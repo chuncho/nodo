@@ -1,43 +1,58 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
+
+import java.util.Date;
 
 @Entity("movimientos")
 public class Movimiento {
 
-    public Movimiento() { super(); }
+    public Movimiento() {
+        super();
+    }
 
     @Id
-    private String id;
+    private ObjectId id;
 
-    private String horario;
+    private Date fecha;
 
     private Float monto;
 
-    @Reference("id_concepto")
-    private String iiConcepto;
+    @Reference(idOnly = true)
+    private Concepto concepto;
 
-    @Reference("tipo_caja")
+    @Property("tipo_caja")
     private String tipoCaja;
 
     private Boolean enabled;
 
-    public String getId() {
+    // metodos generales
+
+    public void prePersist() {
+        if (this.fecha == null) {
+            Date date = new Date();
+            this.fecha = date;
+        }
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getHorario() {
-        return horario;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public Float getMonto() {
@@ -48,12 +63,12 @@ public class Movimiento {
         this.monto = monto;
     }
 
-    public String getIiConcepto() {
-        return iiConcepto;
+    public Concepto getConcepto() {
+        return concepto;
     }
 
-    public void setIiConcepto(String iiConcepto) {
-        this.iiConcepto = iiConcepto;
+    public void setConcepto(Concepto concepto) {
+        this.concepto = concepto;
     }
 
     public String getTipoCaja() {
@@ -64,7 +79,7 @@ public class Movimiento {
         this.tipoCaja = tipoCaja;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 

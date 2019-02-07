@@ -1,5 +1,6 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
 import java.util.ArrayList;
@@ -12,17 +13,17 @@ public class Turno {
     }
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private ArrayList<String> hora;
 
     private ArrayList<String> dia;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

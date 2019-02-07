@@ -1,14 +1,22 @@
 package com.nodo.models;
 
+import com.nodo.utils.Encrypter;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
+
+import java.util.Date;
 
 @Entity("profesores")
 public class Profesor {
 
-    public Profesor() { super(); }
+    private Encrypter enc = new Encrypter();
+
+    public Profesor() {
+        super();
+    }
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private int dni;
 
@@ -20,11 +28,11 @@ public class Profesor {
 
     private String pass;
 
-    @Reference("fecha_creacion")
-    private String fechaCreacion;
+    @Property("fecha_creacion")
+    private Date fechaCreacion;
 
-    @Reference("ultima_modificacion")
-    private String ultimaModificacion;
+    @Property("ultima_modificacion")
+    private Date ultimaModificacion;
 
     private String ingreso;
 
@@ -32,11 +40,21 @@ public class Profesor {
 
     private boolean enabled;
 
-    public String getId() {
+    private static String secretKey = "mkkfkw";
+
+    // metodos generales
+
+    public void prePersist() {
+        Date date = new Date();
+        this.ultimaModificacion = date;
+        this.fechaCreacion = date;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -73,26 +91,31 @@ public class Profesor {
     }
 
     public String getPass() {
-        return pass;
+        return enc.decrypt(this.pass);
+    }
+
+    public String getUncryptedPass() {
+        return this.pass;
     }
 
     public void setPass(String pass) {
-        this.pass = pass;
+        this.pass = enc.encrypt(pass);
+        System.out.println(this.pass);
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getUltimaModificacion() {
+    public Date getUltimaModificacion() {
         return ultimaModificacion;
     }
 
-    public void setUltimaModificacion(String ultimaModificacion) {
+    public void setUltimaModificacion(Date ultimaModificacion) {
         this.ultimaModificacion = ultimaModificacion;
     }
 

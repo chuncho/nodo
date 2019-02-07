@@ -1,5 +1,6 @@
 package com.nodo.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
 @Entity("clases")
@@ -10,7 +11,7 @@ public class Clase {
     }
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private String nombre;
 
@@ -20,14 +21,14 @@ public class Clase {
 
     private Boolean enabled;
 
-    @Reference("id_profesor")
-    private String idProfesor;
+    @Reference(idOnly = true)
+    private Profesor profesor;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -55,7 +56,7 @@ public class Clase {
         this.tipo = tipo;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -63,11 +64,11 @@ public class Clase {
         this.enabled = enabled;
     }
 
-    public String getId_profesor() {
-        return idProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setId_profesor(String id_profesor) {
-        this.idProfesor = id_profesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 }

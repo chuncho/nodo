@@ -1,12 +1,10 @@
-import com.nodo.dao.MainDao;
-import com.nodo.models.Turno;
+import com.nodo.dao.*;
+import com.nodo.models.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import com.nodo.models.Alumno;
-import java.util.List;
 
 public class Main extends Application {
 
@@ -23,23 +21,10 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Nodo Entrenamiento Funcional");
 
+        AlumnoDao dao = new AlumnoDao();
+        Alumno alumno = dao.GetByDni(33313023);
 
-        MainDao dao = new MainDao();
-        List<Alumno> lista = dao.GetListAlumnos();
 
-        List<Turno> lTurno = dao.GetListTurnos();
-
-        for(Turno t :lTurno){
-            System.out.println(t.getDia());
-        }
-
-        for(Alumno a :lista) {
-
-            System.out.println(a.getTelefonoContacto());
-
-        }
-
-        initRootLayout();
 
     }
 
