@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TurnoDao extends DataBase {
 
-    public List<Turno> GetList(){
+    public List<Turno> GetList() {
 
         Query<Turno> q = ds.createQuery(Turno.class).
                 field("enabled").equal(true);
@@ -19,12 +19,12 @@ public class TurnoDao extends DataBase {
         return a;
     }
 
-    public String Insert(Turno a){
+    public String Insert(Turno a) {
         Key<Turno> id = ds.save(a);
         return id.getId().toString();
     }
 
-    public Boolean Update(Turno a){
+    public Boolean Update(Turno a) {
 
         Query<Turno> updQuery = ds.createQuery(Turno.class).filter("id =", a.getId());
 

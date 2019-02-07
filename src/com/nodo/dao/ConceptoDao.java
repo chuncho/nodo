@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ConceptoDao extends DataBase {
 
-    public List<Concepto> GetList(){
+    public List<Concepto> GetList() {
 
         Query<Concepto> q = ds.createQuery(Concepto.class).
                 field("enabled").equal(true);
@@ -19,7 +19,7 @@ public class ConceptoDao extends DataBase {
         return a;
     }
 
-    public Concepto GetByTipo(int tipo){
+    public Concepto GetByTipo(int tipo) {
         Query<Concepto> q = ds.createQuery(Concepto.class).
                 filter("tipo =", tipo).
                 field("enabled").equal(true);
@@ -28,13 +28,13 @@ public class ConceptoDao extends DataBase {
         return a;
     }
 
-    public String Insert(Concepto a){
+    public String Insert(Concepto a) {
         a.setEnabled(true);
         Key<Concepto> id = ds.save(a);
         return id.getId().toString();
     }
 
-    public Boolean Update(Concepto a){
+    public Boolean Update(Concepto a) {
 
         Query<Concepto> updQuery = ds.createQuery(Concepto.class).filter("id =", a.getId());
 

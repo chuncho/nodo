@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RutinaDao extends DataBase {
 
-    public List<Rutina> GetList(){
+    public List<Rutina> GetList() {
 
         Query<Rutina> q = ds.createQuery(Rutina.class).
                 field("enabled").equal(true);
@@ -56,13 +56,13 @@ public class RutinaDao extends DataBase {
 
     }
 
-    public String Insert(Rutina a){
+    public String Insert(Rutina a) {
         a.prePersist();
         Key<Rutina> id = ds.save(a);
         return id.getId().toString();
     }
 
-    public Boolean Update(Rutina a){
+    public Boolean Update(Rutina a) {
 
         Query<Rutina> updQuery = ds.createQuery(Rutina.class).filter("id =", a.getId());
 

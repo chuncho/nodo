@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ClaseDao extends DataBase {
 
-    public List<Clase> GetList(){
+    public List<Clase> GetList() {
 
         Query<Clase> q = ds.createQuery(Clase.class).
                 field("enabled").equal(true);
@@ -31,13 +31,13 @@ public class ClaseDao extends DataBase {
 
     }
 
-    public String Insert(Clase a){
+    public String Insert(Clase a) {
         a.setEnabled(true);
         Key<Clase> id = ds.save(a);
         return id.getId().toString();
     }
 
-    public Boolean Update(Clase a){
+    public Boolean Update(Clase a) {
 
         Query<Clase> updQuery = ds.createQuery(Clase.class).filter("id =", a.getId());
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ProfesorDao extends DataBase {
 
-    public List<Profesor> GetList(){
+    public List<Profesor> GetList() {
 
         Query<Profesor> q = ds.createQuery(Profesor.class).
                 field("enabled").equal(true);
@@ -19,7 +19,7 @@ public class ProfesorDao extends DataBase {
         return profesores;
     }
 
-    public Profesor GetByDni(int dni){
+    public Profesor GetByDni(int dni) {
         Query<Profesor> q = ds.createQuery(Profesor.class).
                 filter("dni =", dni);
 
@@ -27,7 +27,7 @@ public class ProfesorDao extends DataBase {
         return p;
     }
 
-    public Profesor GetByUser(String user){
+    public Profesor GetByUser(String user) {
         Query<Profesor> q = ds.createQuery(Profesor.class).
                 filter("user =", user);
 
@@ -35,14 +35,14 @@ public class ProfesorDao extends DataBase {
         return p;
     }
 
-    public String Insert(Profesor p){
+    public String Insert(Profesor p) {
         p.prePersist();
         p.setEnabled(true);
         Key<Profesor> id = ds.save(p);
         return id.getId().toString();
     }
 
-    public Boolean Update(Profesor p){
+    public Boolean Update(Profesor p) {
 
         p.prePersist();
         Query<Profesor> updQuery = ds.createQuery(Profesor.class).filter("id =", p.getId());

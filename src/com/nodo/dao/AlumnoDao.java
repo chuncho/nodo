@@ -8,11 +8,9 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.List;
 
+public class AlumnoDao extends DataBase {
 
-
-public class AlumnoDao extends DataBase{
-
-    public List<Alumno> GetList(){
+    public List<Alumno> GetList() {
 
         Query<Alumno> q = ds.createQuery(Alumno.class).
                 field("enabled").equal(true);
@@ -21,21 +19,21 @@ public class AlumnoDao extends DataBase{
         return alumnos;
     }
 
-    public Alumno GetByDni(int dni){
+    public Alumno GetByDni(int dni) {
         Query<Alumno> q = ds.createQuery(Alumno.class).filter("dni =", dni);
 
         Alumno alumno = q.get();
         return alumno;
     }
 
-    public String Insert(Alumno alumno){
+    public String Insert(Alumno alumno) {
         alumno.prePersist();
         alumno.setEnabled(true);
         Key<Alumno> id = ds.save(alumno);
         return id.getId().toString();
     }
 
-    public Boolean Update(Alumno alumno){
+    public Boolean Update(Alumno alumno) {
 
         alumno.prePersist();
         Query<Alumno> updQuery = ds.createQuery(Alumno.class).filter("id =", alumno.getId());

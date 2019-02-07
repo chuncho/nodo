@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MovimientoDao extends DataBase {
 
-    public List<Movimiento> GetList(){
+    public List<Movimiento> GetList() {
 
         Query<Movimiento> q = ds.createQuery(Movimiento.class);
         List<Movimiento> a = q.asList();
@@ -44,7 +44,8 @@ public class MovimientoDao extends DataBase {
         Query<Movimiento> q = ds.createQuery(Movimiento.class).
                 field("fecha").lessThanOrEq(hasta).
                 field("fecha").greaterThanOrEq(desde).
-                field("concepto").equal(concepto);;
+                field("concepto").equal(concepto);
+        ;
         List<Movimiento> a = q.asList();
 
         return a;
@@ -61,7 +62,7 @@ public class MovimientoDao extends DataBase {
 
     }
 
-    public String Insert(Movimiento a){
+    public String Insert(Movimiento a) {
         a.prePersist();
         Key<Movimiento> id = ds.save(a);
         return id.getId().toString();

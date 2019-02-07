@@ -3,7 +3,6 @@ package com.nodo.models;
 import org.mongodb.morphia.annotations.*;
 import org.bson.types.ObjectId;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -43,7 +42,7 @@ public class Alumno {
     private Boolean enabled;
 
     @Property("datos_adicionales")
-    private Map<String,String> datosAdicionales;
+    private Map<String, String> datosAdicionales;
 
     // metodos generales
 

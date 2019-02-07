@@ -10,7 +10,9 @@ import java.util.Date;
 @Entity("asistencias")
 public class Asistencia {
 
-    public Asistencia(){super();}
+    public Asistencia() {
+        super();
+    }
 
     @Id
     private ObjectId id;

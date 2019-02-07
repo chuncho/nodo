@@ -7,7 +7,9 @@ import org.mongodb.morphia.annotations.Id;
 @Entity("conceptos")
 public class Concepto {
 
-    public Concepto(){ super(); }
+    public Concepto() {
+        super();
+    }
 
     @Id
     private ObjectId id;

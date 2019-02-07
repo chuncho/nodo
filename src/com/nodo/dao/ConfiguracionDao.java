@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ConfiguracionDao extends DataBase {
 
-    public List<Configuracion> GetList(){
+    public List<Configuracion> GetList() {
 
         Query<Configuracion> q = ds.createQuery(Configuracion.class).
                 field("enabled").equal(true);
@@ -19,13 +19,13 @@ public class ConfiguracionDao extends DataBase {
         return a;
     }
 
-    public String Insert(Configuracion a){
+    public String Insert(Configuracion a) {
         a.setEnabled(true);
         Key<Configuracion> id = ds.save(a);
         return id.getId().toString();
     }
 
-    public Boolean Update(Configuracion a){
+    public Boolean Update(Configuracion a) {
 
         Query<Configuracion> updQuery = ds.createQuery(Configuracion.class).filter("id =", a.getId());
 

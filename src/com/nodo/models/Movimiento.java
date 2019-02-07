@@ -11,7 +11,9 @@ import java.util.Date;
 @Entity("movimientos")
 public class Movimiento {
 
-    public Movimiento() { super(); }
+    public Movimiento() {
+        super();
+    }
 
     @Id
     private ObjectId id;
@@ -31,7 +33,7 @@ public class Movimiento {
     // metodos generales
 
     public void prePersist() {
-        if (this.fecha == null){
+        if (this.fecha == null) {
             Date date = new Date();
             this.fecha = date;
         }

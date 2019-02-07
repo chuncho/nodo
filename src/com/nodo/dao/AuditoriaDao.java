@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AuditoriaDao extends DataBase {
 
-    public List<Auditoria> GetList(){
+    public List<Auditoria> GetList() {
 
         Query<Auditoria> q = ds.createQuery(Auditoria.class);
         List<Auditoria> a = q.asList();
@@ -51,7 +51,7 @@ public class AuditoriaDao extends DataBase {
 
     }
 
-    public String Insert(Auditoria a){
+    public String Insert(Auditoria a) {
         a.prePersist();
         Key<Auditoria> id = ds.save(a);
         return id.getId().toString();

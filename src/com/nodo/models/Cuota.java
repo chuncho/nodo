@@ -11,7 +11,9 @@ import java.util.Date;
 @Entity("cuotas")
 public class Cuota {
 
-    public Cuota(){super();}
+    public Cuota() {
+        super();
+    }
 
     @Id
     private ObjectId id;

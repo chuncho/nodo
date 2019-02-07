@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AsistenciaDao extends DataBase {
 
-    public List<Asistencia> GetList(){
+    public List<Asistencia> GetList() {
 
         Query<Asistencia> q = ds.createQuery(Asistencia.class);
         List<Asistencia> a = q.asList();
@@ -48,7 +48,7 @@ public class AsistenciaDao extends DataBase {
         return a;
     }
 
-    public String Insert(Asistencia a){
+    public String Insert(Asistencia a) {
         a.prePersist();
         Key<Asistencia> id = ds.save(a);
         return id.getId().toString();

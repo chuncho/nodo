@@ -11,7 +11,9 @@ import java.util.Map;
 @Entity("rutinas")
 public class Rutina {
 
-    public Rutina(){ super(); }
+    public Rutina() {
+        super();
+    }
 
     @Id
     private ObjectId id;
@@ -24,7 +26,7 @@ public class Rutina {
 
     private Date vencimiento;
 
-    private Map<String,Object> ejercicios;
+    private Map<String, Object> ejercicios;
 
     private Boolean enabled;
 

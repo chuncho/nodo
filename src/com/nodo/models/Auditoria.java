@@ -11,7 +11,9 @@ import java.util.Map;
 @Entity("auditorias")
 public class Auditoria {
 
-    public Auditoria() { super();}
+    public Auditoria() {
+        super();
+    }
 
     @Id
     private ObjectId id;
@@ -23,7 +25,7 @@ public class Auditoria {
 
     private Date fecha;
 
-    private Map<String,String> data;
+    private Map<String, String> data;
 
     // metodos generales
 

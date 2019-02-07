@@ -5,16 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
 
 public class Main extends Application {
 
@@ -34,62 +24,6 @@ public class Main extends Application {
         AlumnoDao dao = new AlumnoDao();
         Alumno alumno = dao.GetByDni(33313023);
 
-        CuotaDao cdao = new CuotaDao();
-        cdao.GenerarCuotas(alumno);
-
-        /*System.out.println(alumno.getNombre());
-
-        AsistenciaDao asisDao = new AsistenciaDao();
-        List<Asistencia> listA = asisDao.GetByAlumnos(alumno);
-
-        for (Asistencia as : listA) {
-            System.out.println(as.getFecha());
-        }
-
-        try {
-            String sDate1="2018-01-04";
-            Date desde=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
-
-            String sDate2="2018-01-06";
-            Date hasta=new SimpleDateFormat("yyyy-MM-dd").parse(sDate2);
-
-            List<Asistencia> listB = asisDao.GetByFecha(desde, hasta);
-
-            for (Asistencia as : listB) {
-                System.out.println(as.getFecha());
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }*/
-
-
-        /*CuotaDao dao = new CuotaDao();
-        List<Cuota> lista = dao.GetImpagas();
-
-        for(Cuota c : lista) {
-            System.out.println(c.getAlumno().getNombre());
-        }*/
-
-        /*RutinaDao dao = new RutinaDao();
-        List<Rutina> lista = dao.GetVencidas();
-
-        for(Rutina r : lista) {
-            System.out.println(r.getVencimiento());
-        }*/
-
-       /* ProfesorDao dao = new ProfesorDao();
-
-        Profesor p = dao.GetByDni(38572333);
-
-        p.setPass("123456");
-
-        System.out.println(dao.Update(p));
-
-
-        p = dao.GetByDni(38572333);
-
-        System.out.println(p.getPass());*/
 
 
     }

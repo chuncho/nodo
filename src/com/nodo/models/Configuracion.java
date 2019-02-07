@@ -14,7 +14,7 @@ public class Configuracion {
 
     private String nombre;
 
-    private Map<String,Object> data;
+    private Map<String, Object> data;
 
     private Boolean enabled;
 

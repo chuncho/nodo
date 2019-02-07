@@ -1,6 +1,5 @@
 package com.nodo.models;
 
-
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -10,14 +9,16 @@ import java.util.Map;
 @Entity("plantillas")
 public class Plantilla {
 
-    public Plantilla() { super(); }
+    public Plantilla() {
+        super();
+    }
 
     @Id
     private ObjectId id;
 
     private String nombre;
 
-    private Map<String,Object> ejercicios;
+    private Map<String, Object> ejercicios;
 
     private Boolean enabled;
 
