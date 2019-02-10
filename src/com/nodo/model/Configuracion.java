@@ -1,4 +1,4 @@
-package com.nodo.models;
+package com.nodo.model;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -6,19 +6,15 @@ import org.mongodb.morphia.annotations.Id;
 
 import java.util.Map;
 
-@Entity("plantillas")
-public class Plantilla {
-
-    public Plantilla() {
-        super();
-    }
+@Entity("configuraciones")
+public class Configuracion {
 
     @Id
     private ObjectId id;
 
     private String nombre;
 
-    private Map<String, Object> ejercicios;
+    private Map<String, Object> data;
 
     private Boolean enabled;
 
@@ -38,12 +34,12 @@ public class Plantilla {
         this.nombre = nombre;
     }
 
-    public Map<String, Object> getEjercicios() {
-        return ejercicios;
+    public Map<String, Object> getData() {
+        return data;
     }
 
-    public void setEjercicios(Map<String, Object> ejercicios) {
-        this.ejercicios = ejercicios;
+    public void setData(Map<String, Object> data) {
+        this.data = data;
     }
 
     public Boolean isEnabled() {

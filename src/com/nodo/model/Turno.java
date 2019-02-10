@@ -1,4 +1,4 @@
-package com.nodo.models;
+package com.nodo.model;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;

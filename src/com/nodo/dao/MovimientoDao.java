@@ -1,7 +1,7 @@
 package com.nodo.dao;
 
-import com.nodo.models.Concepto;
-import com.nodo.models.Movimiento;
+import com.nodo.model.Concepto;
+import com.nodo.model.Movimiento;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 

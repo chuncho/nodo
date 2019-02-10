@@ -1,6 +1,6 @@
 package com.nodo.dao;
 
-import com.nodo.models.Configuracion;
+import com.nodo.model.Configuracion;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;

@@ -1,7 +1,7 @@
 package com.nodo.dao;
 
-import com.nodo.models.Alumno;
-import com.nodo.models.Asistencia;
+import com.nodo.model.Alumno;
+import com.nodo.model.Asistencia;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 

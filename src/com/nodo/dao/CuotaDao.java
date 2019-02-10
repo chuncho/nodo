@@ -1,8 +1,8 @@
 package com.nodo.dao;
 
-import com.nodo.models.Alumno;
-import com.nodo.models.Asistencia;
-import com.nodo.models.Cuota;
+import com.nodo.model.Alumno;
+import com.nodo.model.Asistencia;
+import com.nodo.model.Cuota;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;

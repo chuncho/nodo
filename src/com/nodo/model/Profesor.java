@@ -1,4 +1,4 @@
-package com.nodo.models;
+package com.nodo.model;
 
 import com.nodo.utils.Encrypter;
 import org.bson.types.ObjectId;
@@ -100,7 +100,6 @@ public class Profesor {
 
     public void setPass(String pass) {
         this.pass = enc.encrypt(pass);
-        System.out.println(this.pass);
     }
 
     public Date getFechaCreacion() {

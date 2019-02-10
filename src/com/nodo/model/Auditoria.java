@@ -1,4 +1,4 @@
-package com.nodo.models;
+package com.nodo.model;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -6,11 +6,12 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
 import java.util.Date;
+import java.util.Map;
 
-@Entity("asistencias")
-public class Asistencia {
+@Entity("auditorias")
+public class Auditoria {
 
-    public Asistencia() {
+    public Auditoria() {
         super();
     }
 
@@ -18,9 +19,13 @@ public class Asistencia {
     private ObjectId id;
 
     @Reference(idOnly = true)
-    private Alumno alumno;
+    private Profesor profesor;
+
+    private String tipo;
 
     private Date fecha;
+
+    private Map<String, String> data;
 
     // metodos generales
 
@@ -37,12 +42,20 @@ public class Asistencia {
         this.id = id;
     }
 
-    public Alumno getAlumno() {
-        return alumno;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Date getFecha() {
@@ -51,5 +64,13 @@ public class Asistencia {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Map<String, String> getData() {
+        return data;
+    }
+
+    public void setData(Map<String, String> data) {
+        this.data = data;
     }
 }

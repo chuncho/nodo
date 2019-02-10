@@ -1,8 +1,9 @@
-import com.nodo.dao.*;
-import com.nodo.models.*;
+package com.nodo;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -13,7 +14,12 @@ public class Main extends Application {
     }
 
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    public BorderPane rootLayout;
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -21,21 +27,21 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Nodo Entrenamiento Funcional");
 
-        AlumnoDao dao = new AlumnoDao();
-        Alumno alumno = dao.GetByDni(33313023);
 
-
+        initRootLayout();
+        showLoginOverview();
 
     }
 
-
-    /** Levanta Layout. */
+    /**
+     * Levanta Layout.
+     */
     public void initRootLayout() {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane)loader.load();
+            loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -46,4 +52,20 @@ public class Main extends Application {
         }
 
     }
+
+    public void showLoginOverview() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/LoginOverview.fxml"));
+            AnchorPane loginOverview = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(loginOverview);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
