@@ -14,7 +14,7 @@
             <TextField fx:id="userTextField" layoutX="256.0" layoutY="142.0" />
             <Label layoutX="191.0" layoutY="147.0" text="Usuario:" />
             <Label layoutX="167.0" layoutY="192.0" text="Contraseña:" />
-            <Button layoutX="350.0" layoutY="244.0" mnemonicParsing="false" text="Cancelar" />
+            <Button layoutX="350.0" layoutY="244.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
             <Button fx:id="aceptarButton" layoutX="256.0" layoutY="244.0" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />
             <PasswordField fx:id="passField" layoutX="256.0" layoutY="187.0" />
          </children></Pane>
