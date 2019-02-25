@@ -1,10 +1,10 @@
 package com.nodo;
 
+import com.nodo.view.LoginOverviewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -14,12 +14,14 @@ public class Main extends Application {
         launch(args);
     }
 
-    private Stage primaryStage;
-    public BorderPane rootLayout;
+    private static Stage primaryStage;
+    private static BorderPane rootLayout;
 
-    public Stage getPrimaryStage() {
+    public static Stage getPrimaryStage() {
         return primaryStage;
     }
+
+    public static BorderPane getRootLayout() { return rootLayout; }
 
     @Override
     public void start(Stage primaryStage) {
@@ -27,16 +29,6 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Nodo Entrenamiento Funcional");
         this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("view/images/icon.png")));
-
-        initRootLayout();
-        showLoginOverview();
-
-    }
-
-    /**
-     * Levanta Layout.
-     */
-    public void initRootLayout() {
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -48,25 +40,15 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
+            LoginOverviewController login = new LoginOverviewController();
+            login.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public void showLoginOverview() {
-
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/LoginOverview.fxml"));
-            AnchorPane loginOverview = (AnchorPane) loader.load();
-
-            rootLayout.setCenter(loginOverview);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }
