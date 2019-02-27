@@ -7,8 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -38,6 +38,9 @@ public class LoginOverviewController implements Initializable {
     }
 
     public void show() {
+
+        MenuBar menu = (MenuBar) Main.getRootLayout().getTop();
+        menu.setVisible(false);
 
         this.rootLayout = Main.getRootLayout();
 
@@ -95,6 +98,7 @@ public class LoginOverviewController implements Initializable {
         userTextField.getStyleClass().remove("error");
         passField.getStyleClass().remove("error");
         panelInfo.setVisible(false);
+        redirect();
     }
 
     private void redirect() {

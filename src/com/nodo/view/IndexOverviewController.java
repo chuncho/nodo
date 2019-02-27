@@ -4,6 +4,7 @@ import com.nodo.Main;
 import com.nodo.model.Profesor;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -31,6 +32,15 @@ public class IndexOverviewController implements Initializable {
 
     public void show() {
 
+        Main.getPrimaryStage().setMinHeight(400);
+        Main.getPrimaryStage().setMinWidth(600);
+        Main.getPrimaryStage().setMaxHeight(800);
+        Main.getPrimaryStage().setMaxWidth(1200);
+        Main.getPrimaryStage().setMaximized(true);
+
+        MenuBar menu = (MenuBar) Main.getRootLayout().getTop();
+        menu.setVisible(true);
+
         this.rootLayout = Main.getRootLayout();
 
         try {
@@ -39,8 +49,6 @@ public class IndexOverviewController implements Initializable {
             AnchorPane indexOverview = (AnchorPane) loader.load();
 
             rootLayout.setCenter(indexOverview);
-
-            System.out.println(profesor.getNombre());
 
         } catch (Exception e) {
             e.printStackTrace();
