@@ -1,8 +1,10 @@
 package com.nodo.dao;
 
+import com.nodo.Main;
 import com.nodo.model.Alumno;
 import com.nodo.model.Asistencia;
 import com.nodo.model.Cuota;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -10,7 +12,9 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.*;
 
-public class CuotaDao extends DataBase {
+public class CuotaDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Cuota> GetList() {
 
@@ -93,7 +97,6 @@ public class CuotaDao extends DataBase {
         String mensaje;
 
         Date diaVencimiento = new Date();
-        diaVencimiento.setDate(10);
         diaVencimiento.setHours(0);
         diaVencimiento.setMinutes(0);
         diaVencimiento.setSeconds(0);
@@ -137,7 +140,9 @@ public class CuotaDao extends DataBase {
         hoy.setMinutes(0);
         hoy.setSeconds(0);
 
-        List<Asistencia> listAsistencia = asistenciaDao.GetByFechaDesde(hoy);
+        List<Asistencia> listAsistencia = asistenciaDao.GetByFechaDesde(hoy, alumno);
+
+        System.out.println(listAsistencia.size());
 
         if (listAsistencia.size() == 0) {
 
@@ -149,6 +154,8 @@ public class CuotaDao extends DataBase {
             cuota.setVencimiento(hoy);
 
             idCuota = Insert(cuota);
+
+            System.out.println("cuota generada: " + idCuota);
 
         }
 

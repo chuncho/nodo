@@ -1,14 +1,18 @@
 package com.nodo.dao;
 
+import com.nodo.Main;
 import com.nodo.model.Alumno;
 import com.nodo.model.Asistencia;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 
 import java.util.Date;
 import java.util.List;
 
-public class AsistenciaDao extends DataBase {
+public class AsistenciaDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Asistencia> GetList() {
 
@@ -39,10 +43,11 @@ public class AsistenciaDao extends DataBase {
 
     }
 
-    public List<Asistencia> GetByFechaDesde(Date desde) {
+    public List<Asistencia> GetByFechaDesde(Date desde, Alumno alumno) {
 
         Query<Asistencia> q = ds.createQuery(Asistencia.class).
-                field("fecha").greaterThanOrEq(desde);
+                field("fecha").greaterThanOrEq(desde).
+                field("alumno").equal(alumno);
         List<Asistencia> a = q.asList();
 
         return a;

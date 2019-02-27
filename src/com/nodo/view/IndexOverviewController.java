@@ -4,9 +4,11 @@ import com.nodo.Main;
 import com.nodo.model.Profesor;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,8 +40,11 @@ public class IndexOverviewController implements Initializable {
         Main.getPrimaryStage().setMaxWidth(1200);
         Main.getPrimaryStage().setMaximized(true);
 
-        MenuBar menu = (MenuBar) Main.getRootLayout().getTop();
-        menu.setVisible(true);
+        Main.getRootLayout().getTop().setVisible(true);
+        Main.getRootLayout().getBottom().setVisible(true);
+
+        Label label = (Label) Main.getRootLayout().getBottom().lookup("#labelUser");
+        label.setText(profesor.getUser());
 
         this.rootLayout = Main.getRootLayout();
 

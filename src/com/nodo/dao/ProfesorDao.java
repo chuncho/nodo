@@ -1,6 +1,8 @@
 package com.nodo.dao;
 
+import com.nodo.Main;
 import com.nodo.model.Profesor;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -8,7 +10,9 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.List;
 
-public class ProfesorDao extends DataBase {
+public class ProfesorDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Profesor> GetList() {
 
@@ -28,6 +32,7 @@ public class ProfesorDao extends DataBase {
     }
 
     public Profesor GetByUser(String user) {
+
         Query<Profesor> q = ds.createQuery(Profesor.class).
                 filter("user =", user);
 

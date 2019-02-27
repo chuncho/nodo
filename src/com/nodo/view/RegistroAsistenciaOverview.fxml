@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nodo.view.RegistroAsistenciaOverviewController">
    <children>
-      <Pane layoutX="-1.0" layoutY="1.0" prefHeight="394.0" prefWidth="600.0">
+      <Pane layoutX="-1.0" layoutY="1.0" prefHeight="400.0" prefWidth="600.0">
          <children>
             <TextField fx:id="dniTextField" layoutX="254.0" layoutY="170.0" />
             <Button layoutX="254.0" layoutY="212.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="27.0" prefWidth="167.0" text="Ingresar" />

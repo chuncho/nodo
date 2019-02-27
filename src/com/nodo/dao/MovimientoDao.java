@@ -1,14 +1,18 @@
 package com.nodo.dao;
 
+import com.nodo.Main;
 import com.nodo.model.Concepto;
 import com.nodo.model.Movimiento;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 
 import java.util.Date;
 import java.util.List;
 
-public class MovimientoDao extends DataBase {
+public class MovimientoDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Movimiento> GetList() {
 

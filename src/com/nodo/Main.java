@@ -1,5 +1,6 @@
 package com.nodo;
 
+import com.mongodb.MongoClient;
 import com.nodo.view.LoginOverviewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 
 public class Main extends Application {
 
@@ -16,6 +19,11 @@ public class Main extends Application {
 
     private static Stage primaryStage;
     private static BorderPane rootLayout;
+
+    private static Morphia morphia = new Morphia();
+    private static Datastore ds = morphia.createDatastore(new MongoClient(), "dbnodo");
+
+    public static Datastore getDs() {return ds; }
 
     public static Stage getPrimaryStage() {
         return primaryStage;

@@ -39,8 +39,8 @@ public class LoginOverviewController implements Initializable {
 
     public void show() {
 
-        MenuBar menu = (MenuBar) Main.getRootLayout().getTop();
-        menu.setVisible(false);
+        Main.getRootLayout().getTop().setVisible(false);
+        Main.getRootLayout().getBottom().setVisible(false);
 
         this.rootLayout = Main.getRootLayout();
 
@@ -111,7 +111,7 @@ public class LoginOverviewController implements Initializable {
             e.printStackTrace();
         }
 
-        IndexOverviewController indexController=  loader.getController();
+        IndexOverviewController indexController = loader.getController();
 
         indexController.setProfesor(profesor);
         indexController.show();

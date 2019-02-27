@@ -1,7 +1,10 @@
 package com.nodo.view;
 
 import com.nodo.dao.AlumnoDao;
+import com.nodo.dao.AsistenciaDao;
+import com.nodo.dao.CuotaDao;
 import com.nodo.model.Alumno;
+import com.nodo.model.Asistencia;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -11,13 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class RegistroAsistenciaOverviewController implements Initializable {
@@ -35,6 +39,8 @@ public class RegistroAsistenciaOverviewController implements Initializable {
                 }
             }
         });
+
+        this.alumnosActivos = new ArrayList<>();
 
     }
 
@@ -89,7 +95,24 @@ public class RegistroAsistenciaOverviewController implements Initializable {
             if (alumno == null) {
                 System.out.println("no existe");
             } else {
-                System.out.println(alumno.getNombre());
+
+                alumnosActivos.add(alumno);
+
+                CuotaDao cuotaDao = new CuotaDao();
+                String cuotaGenerada = cuotaDao.GenerarCuotas(alumno);
+
+                // asentar asistencia de alumno
+                AsistenciaDao asistenciaDao = new AsistenciaDao();
+                Asistencia asistencia = new Asistencia();
+                asistencia.setAlumno(alumno);
+                String asistenciaGenerada = asistenciaDao.Insert(asistencia);
+
+                System.out.println("asistencia generada: " + asistenciaGenerada);
+
+                Map<String, Object> alerta = cuotaDao.AlertaCuotas(alumno);
+
+                System.out.println(alerta);
+
             }
         }
     }
