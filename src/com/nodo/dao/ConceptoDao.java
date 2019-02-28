@@ -1,6 +1,8 @@
 package com.nodo.dao;
 
-import com.nodo.models.Concepto;
+import com.nodo.Main;
+import com.nodo.model.Concepto;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -8,7 +10,9 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.List;
 
-public class ConceptoDao extends DataBase {
+public class ConceptoDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Concepto> GetList() {
 

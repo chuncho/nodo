@@ -1,7 +1,9 @@
 package com.nodo.dao;
 
-import com.nodo.models.Clase;
-import com.nodo.models.Profesor;
+import com.nodo.Main;
+import com.nodo.model.Clase;
+import com.nodo.model.Profesor;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -9,7 +11,9 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.List;
 
-public class ClaseDao extends DataBase {
+public class ClaseDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Clase> GetList() {
 

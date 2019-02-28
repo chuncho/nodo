@@ -1,6 +1,8 @@
 package com.nodo.dao;
 
-import com.nodo.models.Turno;
+import com.nodo.Main;
+import com.nodo.model.Turno;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -8,7 +10,9 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.List;
 
-public class TurnoDao extends DataBase {
+public class TurnoDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Turno> GetList() {
 

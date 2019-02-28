@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nodo.view.controllers.LoginOverviewController">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="userTextField" layoutX="256.0" layoutY="142.0" />
+            <PasswordField fx:id="passField" layoutX="256.0" layoutY="187.0" />
+            <Label layoutX="191.0" layoutY="147.0" text="Usuario:" />
+            <Label layoutX="167.0" layoutY="192.0" text="Contraseña:" />
+            <Button fx:id="aceptarButton" layoutX="256.0" layoutY="244.0" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />
+            <Button layoutX="350.0" layoutY="244.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+            <Pane fx:id="panelInfo" layoutY="10.0" prefHeight="27.0" prefWidth="600.0" style="-fx-background-color: #F4855C; visibility: false; -fx-border-radius: 1px;">
+               <children>
+                  <Label fx:id="lblInfo" alignment="CENTER" prefHeight="27.0" prefWidth="600.0" textAlignment="CENTER" />
+               </children>
+            </Pane>
+         </children></Pane>
+   </children>
+</AnchorPane>

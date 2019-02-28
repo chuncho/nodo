@@ -1,7 +1,9 @@
 package com.nodo.dao;
 
-import com.nodo.models.Alumno;
-import com.nodo.models.Rutina;
+import com.nodo.Main;
+import com.nodo.model.Alumno;
+import com.nodo.model.Rutina;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -10,7 +12,9 @@ import org.mongodb.morphia.query.UpdateResults;
 import java.util.Date;
 import java.util.List;
 
-public class RutinaDao extends DataBase {
+public class RutinaDao {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Rutina> GetList() {
 

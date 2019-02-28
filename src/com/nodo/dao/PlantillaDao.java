@@ -1,6 +1,8 @@
 package com.nodo.dao;
 
-import com.nodo.models.Plantilla;
+import com.nodo.Main;
+import com.nodo.model.Plantilla;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -8,7 +10,9 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.List;
 
-public class PlantillaDao extends DataBase {
+public class PlantillaDao  {
+
+    private static Datastore ds = Main.getDs();
 
     public List<Plantilla> GetList() {
 
