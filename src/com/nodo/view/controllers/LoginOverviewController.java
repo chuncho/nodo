@@ -1,4 +1,4 @@
-package com.nodo.view;
+package com.nodo.view.controllers;
 
 import com.nodo.Main;
 import com.nodo.dao.ProfesorDao;
@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -46,7 +45,7 @@ public class LoginOverviewController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("LoginOverview.fxml"));
+            loader.setLocation(getClass().getResource("../LoginOverview.fxml"));
             AnchorPane loginOverview = (AnchorPane) loader.load();
 
             this.rootLayout.setCenter(loginOverview);
@@ -104,7 +103,7 @@ public class LoginOverviewController implements Initializable {
     private void redirect() {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("IndexOverview.fxml"));
+        loader.setLocation(getClass().getResource("../IndexOverview.fxml"));
         try {
             loader.load();
         } catch (IOException e) {

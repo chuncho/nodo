@@ -1,4 +1,4 @@
-package com.nodo.view;
+package com.nodo.view.controllers;
 
 import com.nodo.dao.AlumnoDao;
 import com.nodo.dao.AsistenciaDao;
@@ -58,23 +58,24 @@ public class RegistroAsistenciaOverviewController implements Initializable {
 
         asistenciaStage = new Stage();
         asistenciaStage.setTitle("Nodo Entrenamiento Funcional - Control de asistencias");
-        asistenciaStage.getIcons().add(new Image(getClass().getResourceAsStream("images/icon.png")));
-        asistenciaStage.setMinHeight(800);
-        asistenciaStage.setMinWidth(1200);
+        asistenciaStage.getIcons().add(new Image(getClass().getResourceAsStream("../images/icon.png")));
+        asistenciaStage.setHeight(630);
+        asistenciaStage.setWidth(1000);
+        asistenciaStage.setResizable(false);
 
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("GuestLayout.fxml"));
+            loader.setLocation(getClass().getResource("../GuestLayout.fxml"));
             guestLayout = (BorderPane) loader.load();
 
             Scene scene = new Scene(guestLayout);
-            scene.getStylesheets().add(getClass().getResource("css/global.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("../css/global.css").toExternalForm());
             asistenciaStage.setScene(scene);
             asistenciaStage.show();
 
             FXMLLoader loader2 = new FXMLLoader();
-            loader2.setLocation(getClass().getResource("RegistroAsistenciaOverview.fxml"));
+            loader2.setLocation(getClass().getResource("../RegistroAsistenciaOverview.fxml"));
             AnchorPane registroAsistenciaOverview = (AnchorPane) loader2.load();
 
             this.guestLayout.setCenter(registroAsistenciaOverview);

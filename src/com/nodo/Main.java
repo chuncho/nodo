@@ -1,7 +1,7 @@
 package com.nodo;
 
 import com.mongodb.MongoClient;
-import com.nodo.view.LoginOverviewController;
+import com.nodo.view.controllers.LoginOverviewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
