@@ -3,8 +3,10 @@ package com.nodo.view.controllers;
 import com.nodo.dao.AlumnoDao;
 import com.nodo.dao.AsistenciaDao;
 import com.nodo.dao.CuotaDao;
+import com.nodo.dao.RutinaDao;
 import com.nodo.model.Alumno;
 import com.nodo.model.Asistencia;
+import com.nodo.model.Rutina;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -12,7 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -23,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import javafx.util.Callback;
 
 public class RegistroAsistenciaOverviewController implements Initializable {
 
@@ -40,7 +45,13 @@ public class RegistroAsistenciaOverviewController implements Initializable {
             }
         });
 
-        this.alumnosActivos = new ArrayList<>();
+        nameCol = new TableColumn<Alumno, String>("Nombre");
+        nameCol.setCellValueFactory(new PropertyValueFactory<Alumno, String>("nombre"));
+        //actionsCol = new TableColumn<>("Acciones");
+        tableAlumnosActivos.getColumns().add(nameCol);
+        //tableAlumnosActivos.getColumns().add(actionsCol);
+
+        alumnosActivos = new ArrayList<Alumno>();
 
     }
 
@@ -51,6 +62,12 @@ public class RegistroAsistenciaOverviewController implements Initializable {
     @FXML
     private TextField dniTextField;
 
+    @FXML
+    private TableView<Alumno> tableAlumnosActivos;
+
+    /*
+        private TableColumn<Alumno, Void> actionsCol;*/
+    private TableColumn<Alumno, String> nameCol;
 
     private List<Alumno> alumnosActivos;
 
@@ -59,8 +76,6 @@ public class RegistroAsistenciaOverviewController implements Initializable {
         asistenciaStage = new Stage();
         asistenciaStage.setTitle("Nodo Entrenamiento Funcional - Control de asistencias");
         asistenciaStage.getIcons().add(new Image(getClass().getResourceAsStream("../images/icon.png")));
-        asistenciaStage.setHeight(630);
-        asistenciaStage.setWidth(1000);
         asistenciaStage.setResizable(false);
 
         try {
@@ -86,18 +101,19 @@ public class RegistroAsistenciaOverviewController implements Initializable {
 
     }
 
-
     @FXML
     private void ingresar(ActionEvent event) {
         if (validForm()) {
             int dni = Integer.valueOf(dniTextField.getText());
             AlumnoDao alumnoDao = new AlumnoDao();
             Alumno alumno = alumnoDao.GetByDni(dni);
+
+            // TODO validacion si ya esta logueado
             if (alumno == null) {
                 System.out.println("no existe");
             } else {
 
-                alumnosActivos.add(alumno);
+                showAlumno(alumno);
 
                 CuotaDao cuotaDao = new CuotaDao();
                 String cuotaGenerada = cuotaDao.GenerarCuotas(alumno);
@@ -118,6 +134,7 @@ public class RegistroAsistenciaOverviewController implements Initializable {
         }
     }
 
+
     private boolean validForm() {
         boolean validate = true;
 
@@ -129,6 +146,99 @@ public class RegistroAsistenciaOverviewController implements Initializable {
         }
 
         return validate;
+    }
+
+    private void showAlumno(Alumno alumno) {
+
+        alumnosActivos.add(alumno);
+        addDeleteButton();
+        addRutinaButton();
+        tableAlumnosActivos.getItems().add(alumno);
+
+    }
+
+    private void addDeleteButton() {
+        TableColumn<Alumno, Void> colBtn = new TableColumn("");
+
+        Callback<TableColumn<Alumno, Void>, TableCell<Alumno, Void>> cellFactory = new Callback<TableColumn<Alumno, Void>, TableCell<Alumno, Void>>() {
+            @Override
+            public TableCell<Alumno, Void> call(final TableColumn<Alumno, Void> param) {
+                final TableCell<Alumno, Void> cell = new TableCell<Alumno, Void>() {
+
+                    private final Button btnDelete = new Button("-");
+
+                    {
+                        btnDelete.setOnAction((ActionEvent event) -> {
+                            Alumno data = getTableView().getItems().get(getIndex());
+                            tableAlumnosActivos.getItems().remove(data);
+                            alumnosActivos.remove(data);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btnDelete);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colBtn.setCellFactory(cellFactory);
+
+        tableAlumnosActivos.getColumns().add(colBtn);
+
+    }
+
+    private void addRutinaButton() {
+        TableColumn<Alumno, Void> colBtn = new TableColumn("");
+
+        Callback<TableColumn<Alumno, Void>, TableCell<Alumno, Void>> cellFactory = new Callback<TableColumn<Alumno, Void>, TableCell<Alumno, Void>>() {
+            @Override
+            public TableCell<Alumno, Void> call(final TableColumn<Alumno, Void> param) {
+                final TableCell<Alumno, Void> cell = new TableCell<Alumno, Void>() {
+
+                    private final Button btnRutina = new Button("+");
+
+                    {
+                        btnRutina.setOnAction((ActionEvent event) -> {
+                            Alumno data = getTableView().getItems().get(getIndex());
+                            showRutina(data);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btnRutina);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colBtn.setCellFactory(cellFactory);
+
+        tableAlumnosActivos.getColumns().add(colBtn);
+
+    }
+
+
+    private void showRutina(Alumno alumno) {
+        RutinaDao rutinaDao = new RutinaDao();
+        Rutina rutina = rutinaDao.GetActiveByAlumno(alumno);
+
+        System.out.println(rutina.getEjercicios());
+
     }
 
 }

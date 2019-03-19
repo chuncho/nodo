@@ -39,9 +39,19 @@ public class RutinaDao {
     public List<Rutina> GetByAlumno(Alumno alumno) {
 
         Query<Rutina> q = ds.createQuery(Rutina.class).
+                field("alumno").equal(alumno);
+        List<Rutina> a = q.asList();
+
+        return a;
+
+    }
+
+    public Rutina GetActiveByAlumno(Alumno alumno) {
+
+        Query<Rutina> q = ds.createQuery(Rutina.class).
                 field("alumno").equal(alumno).
                 field("enabled").equal(true);
-        List<Rutina> a = q.asList();
+        Rutina a = q.get();
 
         return a;
 
@@ -61,6 +71,7 @@ public class RutinaDao {
     }
 
     public String Insert(Rutina a) {
+        // TODO DESACTIVAR TODAS LAS DEMAS
         a.prePersist();
         Key<Rutina> id = ds.save(a);
         return id.getId().toString();
