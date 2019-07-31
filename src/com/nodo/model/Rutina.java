@@ -5,6 +5,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class Rutina {
 
     private Date vencimiento;
 
-    private Map<String, Object> ejercicios;
+    private Map<String, ArrayList<String>> ejercicios;
 
     private Boolean enabled;
 
@@ -66,11 +67,11 @@ public class Rutina {
         this.vencimiento = vencimiento;
     }
 
-    public Map<String, Object> getEjercicios() {
+    public Map<String, ArrayList<String>> getEjercicios() {
         return ejercicios;
     }
 
-    public void setEjercicios(Map<String, Object> ejercicios) {
+    public void setEjercicios(Map<String, ArrayList<String>> ejercicios) {
         this.ejercicios = ejercicios;
     }
 
